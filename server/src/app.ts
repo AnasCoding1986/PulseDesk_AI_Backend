@@ -10,7 +10,15 @@ const app = express();
 
 // Middlewares
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://pulse-desk-ai-frontend.vercel.app',
+    process.env.CLIENT_URL || ''
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use(morgan('dev'));
 
